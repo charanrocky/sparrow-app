@@ -184,8 +184,16 @@
     },
     {
       key: "folders",
-      condition: filteredFolder && filteredFolder[0],
-      items: filteredFolder ? [filteredFolder[0]] : [],
+      condition: filteredFolder && filteredFolder.length > 0,
+      items: filteredFolder
+        ? [...filteredFolder]
+            .sort(
+              (a, b) =>
+                new Date(b.updatedAt).getTime() -
+                new Date(a.updatedAt).getTime(),
+            )
+            .slice(0, 1)
+        : [],
     },
     {
       key: "workspaces",
@@ -195,15 +203,7 @@
     {
       key: "flows",
       condition: filteredTestflows && filteredTestflows.length,
-      items: filteredTestflows
-        ? [...filteredTestflows]
-            .sort(
-              (a, b) =>
-                new Date(b.updatedAt).getTime() -
-                new Date(a.updatedAt).getTime(),
-            )
-            .slice(0, 1)
-        : [],
+      items: filteredTestflows ? [filteredTestflows[0]] : [],
     },
   ];
 
