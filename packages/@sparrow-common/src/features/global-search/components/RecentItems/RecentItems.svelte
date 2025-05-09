@@ -184,16 +184,8 @@
     },
     {
       key: "folders",
-      condition: filteredFolder && filteredFolder.length > 0,
-      items: filteredFolder
-        ? [...filteredFolder]
-            .sort(
-              (a, b) =>
-                new Date(b.updatedAt).getTime() -
-                new Date(a.updatedAt).getTime(),
-            )
-            .slice(0, 1)
-        : [],
+      condition: filteredFolder && filteredFolder[0],
+      items: filteredFolder ? [filteredFolder[0]] : [],
     },
     {
       key: "workspaces",
