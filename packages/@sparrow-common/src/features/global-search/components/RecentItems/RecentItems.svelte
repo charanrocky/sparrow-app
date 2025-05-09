@@ -175,7 +175,7 @@
     {
       key: "collections",
       condition: filteredCollection && filteredCollection[0],
-      items: filteredCollection ? [filteredCollection[0]] : [],
+      items: filteredCollection,
     },
     {
       key: "environments",
@@ -184,18 +184,9 @@
     },
     {
       key: "folders",
-      condition: filteredFolder && filteredFolder.length > 0,
-      items: filteredFolder
-        ? [...filteredFolder]
-            .sort(
-              (a, b) =>
-                new Date(b.updatedAt).getTime() -
-                new Date(a.updatedAt).getTime(),
-            )
-            .slice(0, 1)
-        : [],
+      condition: filteredFolder && filteredFolder[0],
+      items: filteredFolder ? [filteredFolder[0]] : [],
     },
-
     {
       key: "workspaces",
       condition: filteredWorkspaces && filteredWorkspaces[0],
@@ -204,7 +195,15 @@
     {
       key: "flows",
       condition: filteredTestflows && filteredTestflows.length,
-      items: filteredTestflows ? filteredTestflows.slice(0, 1) : [],
+      items: filteredTestflows
+        ? [...filteredTestflows]
+            .sort(
+              (a, b) =>
+                new Date(b.updatedAt).getTime() -
+                new Date(a.updatedAt).getTime(),
+            )
+            .slice(0, 1)
+        : [],
     },
   ];
 
